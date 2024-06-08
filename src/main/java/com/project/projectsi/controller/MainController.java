@@ -1,14 +1,36 @@
 package com.project.projectsi.controller;
 
-import org.springframework.stereotype.Controller;
+import com.project.projectsi.models.DailyEntry;
+import com.project.projectsi.service.DailyEntryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+import java.time.LocalDate;
+import java.util.List;
+
+@RestController
 public class MainController {
+
+    private final DailyEntryService dailyEntryService;
+
+    @Autowired
+    public MainController(DailyEntryService dailyEntryService){
+        this.dailyEntryService = dailyEntryService;
+    }
+
     @GetMapping("/")
     @ResponseBody
     public String index(){
         return "hello";
+    }
+
+    @GetMapping("/todaysEntry")
+    @ResponseBody
+    public List<DailyEntry> getTodayEntry(@RequestParam("forDay") String day){
+        LocalDate time = LocalDate.parse(day);
+        return dailyEntryService.findDailyEntryByForDay(time);
     }
 }
