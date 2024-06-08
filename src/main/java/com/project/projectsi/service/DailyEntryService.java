@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Service
 public class DailyEntryService {
@@ -17,7 +16,7 @@ public class DailyEntryService {
         this.dailyEntryRepository = dailyEntryRepository;
     }
 
-    public List<DailyEntry> findDailyEntryByForDay(LocalDate forDay){
+    public DailyEntry findDailyEntryByForDay(LocalDate forDay){
         return dailyEntryRepository.findByForDay(forDay);
     }
 }

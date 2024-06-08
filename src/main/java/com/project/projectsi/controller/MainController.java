@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
-import java.util.List;
 
+@SuppressWarnings("SameReturnValue")
 @RestController
 public class MainController {
 
@@ -29,7 +29,7 @@ public class MainController {
 
     @GetMapping("/todaysEntry")
     @ResponseBody
-    public List<DailyEntry> getTodayEntry(@RequestParam("forDay") String day){
+    public DailyEntry getTodayEntry(@RequestParam("forDay") String day){
         LocalDate time = LocalDate.parse(day);
         return dailyEntryService.findDailyEntryByForDay(time);
     }
