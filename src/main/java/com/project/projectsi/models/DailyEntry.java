@@ -13,11 +13,11 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
-@Table(name = "dailyentry")
+@Table(name = "DailyEntry")
 public class DailyEntry {
     @Id
-    @Column(name = "ID", nullable = false)
-    private Integer id;
+    @Column(name = "dailyEntryID", nullable = false)
+    private Integer dailyEntryID;
 
     @Column(name = "addedOn", nullable = false)
     private LocalDateTime addedOn;
